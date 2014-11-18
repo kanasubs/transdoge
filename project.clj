@@ -1,4 +1,4 @@
-(defproject transdoge "0.1.0"
+(defproject transdoge "0.1.1"
 
   :description "An automatic translation companion in Clojure that wraps microsoft-translator-java-api"
 

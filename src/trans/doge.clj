@@ -1,5 +1,6 @@
 (ns trans.doge
   (:use benri.kuro)
+  (:refer-clojure :exclude [update]) ; OPTIMIZE remove after upgrade to clj 1.7
   (:require [clojure.string :refer [upper-case trim]]
             [clojure.walk :refer [keywordize-keys]])
   (:import [com.memetix.mst.translate Translate]
@@ -15,13 +16,15 @@
     (->> lang name upper-case (str language-ns-str "/") read-string eval)))
 
 ; TODO create default for :ENGLISH
-(defn ->langs [locale]
-  (->> locale
-       ->lang-enum
-       Language/values
-       (into {})
-       (map-keys upper-case)
-       keywordize-keys))
+(defn ->langs
+  ([locale]
+    (->> locale
+         ->lang-enum
+         Language/values
+         (into {})
+         (map-keys upper-case)
+         keywordize-keys))
+  ([] (->langs :ENGLISH)))
 
 ; TODO create README.md entry for this
 (defn partition-by-service-constraints [items-list]
