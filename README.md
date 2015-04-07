@@ -35,17 +35,15 @@ Add the following to the `:dependencies` vector of your `project.clj` file:
 (translate "猫" :JAPANESE :PORTUGUESE) ;=> "GATO"
 
 ; such language auto-detection
+(detect-lang "猫を被る") ;=> #<Language ja>
+
+; such translation with language auto-detection
 (translate "ドグドグ" :ENGLISH) ;=> "Dog dog"
 ```
 
 ### Concern?
 ----------
 So scare
-
-### Much transdoge use? Wow, put it here!
-----------
-[kanasubs.com](http://www.kanasubs.com) — Convert raw subtitles in Kanji to
-Kana online.
 
 ### So rich contributions
 ----------
@@ -54,6 +52,6 @@ Kana online.
 
 ### There's a license (⌒_⌒;)
 ----------
-Copyright (C) 2014 Carlos C. Fontes.
+Copyright (C) 2015 Carlos C. Fontes.
 
 Licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0), same as microsoft-translator-java-api.

@@ -1,21 +1,21 @@
 (ns trans.doge
-  (:use benri.kuro)
-  (:refer-clojure :exclude [update]) ; OPTIMIZE remove after upgrade to clj 1.7
+  (:use medley.core)
   (:require [clojure.string :refer [upper-case trim]]
             [clojure.walk :refer [keywordize-keys]])
   (:import [com.memetix.mst.translate Translate]
            [com.memetix.mst.language Language]
-           [com.memetix.mst MicrosoftTranslatorAPI]))
+           [com.memetix.mst MicrosoftTranslatorAPI]
+           [com.memetix.mst.detect Detect]))
 
 (defn set-credentials! [& {:keys [id secret]}]
   (Translate/setClientId id)
   (Translate/setClientSecret secret))
 
 (defn ->lang-enum [lang]
+  ":ENGLISH → com.memetix.mst.language.Language/ENGLISH → #<Language en>"
   (let [language-ns-str "com.memetix.mst.language.Language"]
     (->> lang name upper-case (str language-ns-str "/") read-string eval)))
 
-; TODO create default for :ENGLISH
 (defn ->langs
   ([locale]
     (->> locale
@@ -25,6 +25,8 @@
          (map-keys upper-case)
          keywordize-keys))
   ([] (->langs :ENGLISH)))
+
+(defn detect-lang [s] (Detect/execute s))
 
 ; TODO create README.md entry for this
 (defn partition-by-service-constraints [items-list]
@@ -45,3 +47,4 @@
 
 ; OPTIMIZE maybe id and secret should be map like set-credentials!
 (defn ->token! [id secret] (MicrosoftTranslatorAPI/getToken id secret))
+
