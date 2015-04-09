@@ -1,5 +1,6 @@
 (ns trans.doge
   (:use medley.core)
+  (:refer-clojure :exclude [update])
   (:require [clojure.string :refer [upper-case trim]]
             [clojure.walk :refer [keywordize-keys]])
   (:import [com.memetix.mst.translate Translate]

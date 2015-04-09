@@ -1,4 +1,4 @@
-(defproject transdoge "0.1.2"
+(defproject transdoge "0.1.3"
 
   :description "An automatic translation companion in Clojure that wraps microsoft-translator-java-api"
 
@@ -12,6 +12,6 @@
 
   :repl-options {:init-ns trans.doge}
 
-  :dependencies [[org.clojure/clojure "1.7.0-alpha1"]
+  :dependencies [[org.clojure/clojure "1.5.1"]
                  [com.memetix/microsoft-translator-java-api "0.6.2"]
                  [medley "0.5.5"]])
